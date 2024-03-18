@@ -238,7 +238,7 @@ void test2() {
 
 int main() {
     test1();
-    //insertionSort();
-    //test2();
+    insertionSort();
+    test2();
     return 0;
 }

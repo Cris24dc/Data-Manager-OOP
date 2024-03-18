@@ -16,4 +16,5 @@ enum State {
     FIND_INFO_ID,
     FIND_INFO_NAME,
 };
+
 #endif

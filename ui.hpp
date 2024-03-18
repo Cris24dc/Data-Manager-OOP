@@ -1,15 +1,14 @@
+#include <iostream>
 #include <string>
 #include <cstring>
 #include <ncurses.h>
 #include "state.hpp"
+#include "info_types.hpp"
+#include "info_methods.hpp"
 
-struct text{
-    unsigned int id;
-    char* name;
-    char* value;
-};
+using namespace std;
 
-void print_choices(State currentState) {
+void print_choices(State currentState, text* &start_text, text* &end_text, int &id, int &text_size, number* &start_number, number* &end_number, int &number_size, math* &start_math, math* &end_math, int &math_size, adress* &start_adress, adress* &end_adress, int &adress_size) {
     if (currentState == MAIN_MENU) {
         mvprintw(2, 0, "Choose an option:");
         mvprintw(4, 0, "1. Add Information");
@@ -29,50 +28,97 @@ void print_choices(State currentState) {
     }
 
     else if (currentState == ADD_INFO_TEXT) {
-        mvprintw(2, 0, "Search by value: ");
+        mvprintw(2, 0, "Enter the name of the text: ");
         refresh();
-        char input[100];
+        char temp_name[255], temp_value[255];
         echo();
-        getstr(input);
-        noecho();
-        printw("You entered: %s", input);
+        getstr(temp_name);
+        mvprintw(3, 0, "Enter the value of the text: ");
         refresh();
+        getstr(temp_value);
+        noecho();
+        add_text(start_text, end_text, id, temp_name, temp_value, text_size);
         mvprintw(9, 0, "Press any key to go back");
     }
 
     else if (currentState == ADD_INFO_NUMBER) {
-        mvprintw(2, 0, "Search by value: ");
+        mvprintw(2, 0, "Enter the name of the number: ");
         refresh();
-        char input[100];
+        char temp_name[255];
         echo();
-        getstr(input);
+        getstr(temp_name);
         noecho();
-        printw("You entered: %s", input);
+        mvprintw(3, 0, "Enter the value of the number: ");
         refresh();
+        int temp_value;
+        echo();
+        scanw("%d", &temp_value);
+        noecho();
+        add_number(start_number, end_number, id, temp_name, temp_value, number_size);
         mvprintw(9, 0, "Press any key to go back");
     }
-    
+
     else if (currentState == ADD_INFO_MATH) {
-        mvprintw(2, 0, "Search by value: ");
+        mvprintw(2, 0, "Enter the name of the math: ");
         refresh();
-        char input[100];
+        char temp_name[255];
         echo();
-        getstr(input);
+        getstr(temp_name);
         noecho();
-        printw("You entered: %s", input);
+        mvprintw(3, 0, "Enter the first value of the math: ");
         refresh();
+        int temp_a;
+        echo();
+        scanw("%d", &temp_a);
+        noecho();
+        mvprintw(4, 0, "Enter the second value of the math: ");
+        refresh();
+        int temp_b;
+        echo();
+        scanw("%d", &temp_b);
+        noecho();
+        add_math(start_math, end_math, id, temp_name, temp_a, temp_b, math_size);
         mvprintw(9, 0, "Press any key to go back");
     }
 
     else if (currentState == ADD_INFO_ADDRESS) {
-        mvprintw(2, 0, "Search by value: ");
+        mvprintw(2, 0, "Enter the name of the address: ");
         refresh();
-        char input[100];
+        char temp_name[255];
         echo();
-        getstr(input);
+        getstr(temp_name);
         noecho();
-        printw("You entered: %s", input);
+        mvprintw(3, 0, "Enter the country: ");
         refresh();
+        char temp_tara[255];
+        echo();
+        getstr(temp_tara);
+        noecho();
+        mvprintw(4, 0, "Enter the county: ");
+        refresh();
+        char temp_judet[255];
+        echo();
+        getstr(temp_judet);
+        noecho();
+        mvprintw(5, 0, "Enter the city: ");
+        refresh();
+        char temp_oras[255];
+        echo();
+        getstr(temp_oras);
+        noecho();
+        mvprintw(6, 0, "Enter the street: ");
+        refresh();
+        char temp_strada[255];
+        echo();
+        getstr(temp_strada);
+        noecho();
+        mvprintw(7, 0, "Enter the number: ");
+        refresh();
+        char temp_numar[255];
+        echo();
+        getstr(temp_numar);
+        noecho();
+        add_adress(start_adress, end_adress, id, temp_name, temp_tara, temp_judet, temp_oras, temp_strada, temp_numar, adress_size);
         mvprintw(9, 0, "Press any key to go back");
     }
 
@@ -90,16 +136,38 @@ void print_choices(State currentState) {
         mvprintw(9, 0, "Press 'esc' to go back");
     }
 
+    else if (currentState == FIND_INFO_NAME){
+        mvprintw(2, 0, "Enter the name to search: ");
+        refresh();
+        char search_input[255];
+        echo();
+        getstr(search_input);
+        noecho();
+        find_by_name(start_text, start_number, start_math, start_adress, search_input);
+        mvprintw(9, 0, "Press any key to go back");
+    }
+
+    else if (currentState == FIND_INFO_ID) {
+        mvprintw(2, 0, "Enter the ID to search: ");
+        refresh();
+        int search_input;
+        echo();
+        scanw("%d", &search_input);
+        noecho();
+        find_by_id(start_text, start_number, start_math, start_adress, search_input);
+        mvprintw(9, 0, "Press any key to go back");
+    }
+
     else if (currentState == SEARCH_INFO) {
         mvprintw(2, 0, "Search by value: ");
-        refresh();
-        char input[100];
-        echo();
-        getstr(input);
-        noecho();
-        printw("You entered: %s", input);
-        refresh();
-        mvprintw(9, 0, "Press any key to go back");
+        // refresh();
+        // char input[100];
+        // echo();
+        // getstr(input);
+        // noecho();
+        // printw("You entered: %s", input);
+        // refresh();
+        mvprintw(19, 0, "Press any key to go back");
     }
 }
 
