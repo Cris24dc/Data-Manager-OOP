@@ -5,84 +5,172 @@
 #include "info_types.hpp"
 
 void add_text(text* &start_text, text* &end_text, int &id, char* temp_name, char* temp_value, int &text_size) {
-    text* ptr = new text;
-    ptr->id = id++;
-    strcpy(ptr->name, temp_name);
-    strcpy(ptr->value, temp_value);
-    ptr->next = nullptr;
+    text* ptr = start_text;
+    bool found = false;
 
-    if (end_text == nullptr) {
-        end_text = ptr;
-        start_text = end_text;
+    while (ptr != nullptr) {
+        if (strcmp(ptr->name, temp_name) == 0) {
+            strcat(ptr->value, temp_value);
+            attron(COLOR_PAIR(2));
+            mvprintw(9, 0, "Text name already exists");
+            mvprintw(10, 0, "Both texts have been concatenated");
+            attroff(COLOR_PAIR(2));
+            found = true;
+            break;
+        }
+        ptr = ptr->next;
     }
-    else {
-        end_text->next = ptr;
-        end_text = ptr;
+
+    if (!found) {
+        ptr = new text;
+        ptr->id = id++;
+        strcpy(ptr->name, temp_name);
+        strcpy(ptr->value, temp_value);
+        ptr->next = nullptr;
+
+        if (end_text == nullptr) {
+            end_text = ptr;
+            start_text = end_text;
+        }
+        else {
+            end_text->next = ptr;
+            end_text = ptr;
+        }
+        text_size++;
+
+        attron(COLOR_PAIR(2));
+        mvprintw(9, 0, "Text added successfully");
+        attroff(COLOR_PAIR(2));
     }
-    text_size++;
 }
 
 void add_number(number* &start_number, number* &end_number, int &id, char* temp_name, int temp_value, int &number_size) {
-    number* ptr = new number;
-    ptr->id = id++;
-    strcpy(ptr->name, temp_name);
-    ptr->value = temp_value;
-    ptr->next = nullptr;
+    number* ptr = start_number;
+    bool found = false;
 
-    if (end_number == nullptr) {
-        end_number = ptr;
-        start_number = end_number;
+    while (ptr != nullptr) {
+        if (strcmp(ptr->name, temp_name) == 0) {
+            ptr->value += temp_value;
+            attron(COLOR_PAIR(2));
+            mvprintw(9, 0, "Number name already exists");
+            mvprintw(10, 0, "Both numbers have been summed up");
+            attroff(COLOR_PAIR(2));
+            found = true;
+            break;
+        }
+        ptr = ptr->next;
     }
-    else {
-        end_number->next = ptr;
-        end_number = ptr;
+
+    if (!found) {
+        number* ptr = new number;
+        ptr->id = id++;
+        strcpy(ptr->name, temp_name);
+        ptr->value = temp_value;
+        ptr->next = nullptr;
+
+        if (end_number == nullptr) {
+            end_number = ptr;
+            start_number = end_number;
+        }
+        else {
+            end_number->next = ptr;
+            end_number = ptr;
+        }
+        number_size++;
+
+        attron(COLOR_PAIR(2));
+        mvprintw(9, 0, "Number added successfully");
+        attroff(COLOR_PAIR(2));
     }
-    number_size++;
 }
 
 void add_math(math* &start_math, math* &end_math, int &id, char* temp_name, int temp_a, int temp_b, int &math_size) {
-    math* ptr = new math;
-    ptr->id = id++;
-    strcpy(ptr->name, temp_name);
-    ptr->part.a = temp_a;
-    ptr->part.b = temp_b;
-    ptr->next = nullptr;
+    math* ptr = start_math;
+    bool found = false;
 
-    if (end_math == nullptr) {
-        end_math = ptr;
-        start_math = end_math;
+    while (ptr != nullptr) {
+        if (strcmp(ptr->name, temp_name) == 0) {
+            ptr->part.a += temp_a;
+            ptr->part.b += temp_b;
+            attron(COLOR_PAIR(2));
+            mvprintw(9, 0, "Complex number name already exists");
+            mvprintw(10, 0, "Both complex numbers have been summed up");
+            attroff(COLOR_PAIR(2));
+            found = true;
+            break;
+        }
+        ptr = ptr->next;
     }
-    else {
-        end_math->next = ptr;
-        end_math = ptr;
+    
+    if (!found) {
+        math* ptr = new math;
+        ptr->id = id++;
+        strcpy(ptr->name, temp_name);
+        ptr->part.a = temp_a;
+        ptr->part.b = temp_b;
+        ptr->next = nullptr;
+
+        if (end_math == nullptr) {
+            end_math = ptr;
+            start_math = end_math;
+        }
+        else {
+            end_math->next = ptr;
+            end_math = ptr;
+        }
+        math_size++;    
+
+        attron(COLOR_PAIR(2));
+        mvprintw(9, 0, "Complex number added successfully");
+        attroff(COLOR_PAIR(2));
     }
-    math_size++;
 }
 
 void add_adress(adress* &start_adress, adress* &end_adress, int &id, char* temp_name, char* temp_tara, char* temp_judet, char* temp_oras, char* temp_strada, char* temp_numar, int &adress_size) {
-    adress* ptr = new adress;
-    ptr->id = id++;
-    strcpy(ptr->name, temp_name);
-    strcpy(ptr->field.tara, temp_tara);
-    strcpy(ptr->field.judet, temp_judet);
-    strcpy(ptr->field.oras, temp_oras);
-    strcpy(ptr->field.strada, temp_strada);
-    strcpy(ptr->field.numar, temp_numar);
-    ptr->next = nullptr;
+    adress* ptr = start_adress;
+    bool found = false;
 
-    if (end_adress == nullptr) {
-        end_adress = ptr;
-        start_adress = end_adress;
+    while (ptr != nullptr) {
+        if (strcmp(ptr->name, temp_name) == 0) {
+            attron(COLOR_PAIR(1));
+            mvprintw(9, 0, "ERROR: Adress name already exists");
+            mvprintw(10, 0, "Can't add an adress with the same name");
+            attroff(COLOR_PAIR(1));
+            found = true;
+            break;
+        }
+        ptr = ptr->next;
     }
-    else {
-        end_adress->next = ptr;
-        end_adress = ptr;
+    
+    if (!found) {
+        adress* ptr = new adress;
+        ptr->id = id++;
+        strcpy(ptr->name, temp_name);
+        strcpy(ptr->field.tara, temp_tara);
+        strcpy(ptr->field.judet, temp_judet);
+        strcpy(ptr->field.oras, temp_oras);
+        strcpy(ptr->field.strada, temp_strada);
+        strcpy(ptr->field.numar, temp_numar);
+        ptr->next = nullptr;
+
+        if (end_adress == nullptr) {
+            end_adress = ptr;
+            start_adress = end_adress;
+        }
+        else {
+            end_adress->next = ptr;
+            end_adress = ptr;
+        }
+        adress_size++;
+
+        attron(COLOR_PAIR(2));
+        mvprintw(9, 0, "Address added successfully");
+        attroff(COLOR_PAIR(2));
     }
-    adress_size++;
 }
 
 void find_by_name(text* text_ptr, number* number_ptr, math* math_ptr, adress* adress_ptr, const char* search_input) {
-    int line = 4;
+    int line = 7;
     bool found = false;
 
     if (text_ptr != nullptr) {
@@ -145,7 +233,7 @@ void find_by_name(text* text_ptr, number* number_ptr, math* math_ptr, adress* ad
 }
 
 void find_by_id(text* text_ptr, number* number_ptr, math* math_ptr, adress* adress_ptr, int search_input) {
-    int line = 4;
+    int line = 7;
     bool found = false;
 
     if (text_ptr != nullptr) {

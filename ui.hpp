@@ -15,16 +15,16 @@ void print_choices(State currentState, text* &start_text, text* &end_text, int &
         mvprintw(5, 0, "2. Delete Information");
         mvprintw(6, 0, "3. Find Information");
         mvprintw(7, 0, "4. Search Information");
-        mvprintw(9, 0, "Press 'esc' to exit");
+        mvprintw(12, 0, "Press 'esc' to exit");
     }
 
     else if (currentState == ADD_INFO) {
         mvprintw(2, 0, "Choose an option:");
         mvprintw(4, 0, "1. Text");
         mvprintw(5, 0, "2. Number");
-        mvprintw(6, 0, "3. Mathematics");
+        mvprintw(6, 0, "3. Complex Number");
         mvprintw(7, 0, "4. Address");
-        mvprintw(9, 0, "Press 'esc' to go back");
+        mvprintw(12, 0, "Press 'esc' to go back");
     }
 
     else if (currentState == ADD_INFO_TEXT) {
@@ -38,7 +38,7 @@ void print_choices(State currentState, text* &start_text, text* &end_text, int &
         getstr(temp_value);
         noecho();
         add_text(start_text, end_text, id, temp_name, temp_value, text_size);
-        mvprintw(9, 0, "Press any key to go back");
+        mvprintw(12, 0, "Press any key to go back");
     }
 
     else if (currentState == ADD_INFO_NUMBER) {
@@ -55,30 +55,30 @@ void print_choices(State currentState, text* &start_text, text* &end_text, int &
         scanw("%d", &temp_value);
         noecho();
         add_number(start_number, end_number, id, temp_name, temp_value, number_size);
-        mvprintw(9, 0, "Press any key to go back");
+        mvprintw(12, 0, "Press any key to go back");
     }
 
     else if (currentState == ADD_INFO_MATH) {
-        mvprintw(2, 0, "Enter the name of the math: ");
+        mvprintw(2, 0, "Enter the name of the complex number: ");
         refresh();
         char temp_name[255];
         echo();
         getstr(temp_name);
         noecho();
-        mvprintw(3, 0, "Enter the first value of the math: ");
+        mvprintw(3, 0, "Enter the real part: ");
         refresh();
         int temp_a;
         echo();
         scanw("%d", &temp_a);
         noecho();
-        mvprintw(4, 0, "Enter the second value of the math: ");
+        mvprintw(4, 0, "Enter the imaginary part: ");
         refresh();
         int temp_b;
         echo();
         scanw("%d", &temp_b);
         noecho();
         add_math(start_math, end_math, id, temp_name, temp_a, temp_b, math_size);
-        mvprintw(9, 0, "Press any key to go back");
+        mvprintw(12, 0, "Press any key to go back");
     }
 
     else if (currentState == ADD_INFO_ADDRESS) {
@@ -119,21 +119,21 @@ void print_choices(State currentState, text* &start_text, text* &end_text, int &
         getstr(temp_numar);
         noecho();
         add_adress(start_adress, end_adress, id, temp_name, temp_tara, temp_judet, temp_oras, temp_strada, temp_numar, adress_size);
-        mvprintw(9, 0, "Press any key to go back");
+        mvprintw(12, 0, "Press any key to go back");
     }
 
     else if (currentState == DELETE_INFO) {
         mvprintw(2, 0, "Choose an option:");
         mvprintw(4, 0, "1. Delete by ID");
         mvprintw(5, 0, "2. Delete by Name");
-        mvprintw(9, 0, "Press 'esc' to go back");
+        mvprintw(12, 0, "Press 'esc' to go back");
     }
 
     else if (currentState == FIND_INFO) {
         mvprintw(2, 0, "Choose an option:");
         mvprintw(4, 0, "1. Find by ID");
         mvprintw(5, 0, "2. Find by Name");
-        mvprintw(9, 0, "Press 'esc' to go back");
+        mvprintw(12, 0, "Press 'esc' to go back");
     }
 
     else if (currentState == FIND_INFO_NAME){
@@ -144,7 +144,7 @@ void print_choices(State currentState, text* &start_text, text* &end_text, int &
         getstr(search_input);
         noecho();
         find_by_name(start_text, start_number, start_math, start_adress, search_input);
-        mvprintw(9, 0, "Press any key to go back");
+        mvprintw(12, 0, "Press any key to go back");
     }
 
     else if (currentState == FIND_INFO_ID) {
@@ -155,7 +155,7 @@ void print_choices(State currentState, text* &start_text, text* &end_text, int &
         scanw("%d", &search_input);
         noecho();
         find_by_id(start_text, start_number, start_math, start_adress, search_input);
-        mvprintw(9, 0, "Press any key to go back");
+        mvprintw(12, 0, "Press any key to go back");
     }
 
     else if (currentState == SEARCH_INFO) {
@@ -167,7 +167,7 @@ void print_choices(State currentState, text* &start_text, text* &end_text, int &
         // noecho();
         // printw("You entered: %s", input);
         // refresh();
-        mvprintw(19, 0, "Press any key to go back");
+        mvprintw(12, 0, "Press any key to go back");
     }
 }
 
