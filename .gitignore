@@ -1,2 +1,8 @@
-./resources
-./vscode
+*.o
+*.out
+*.exe
+
+.idea/
+.vscode/
+
+resources/
