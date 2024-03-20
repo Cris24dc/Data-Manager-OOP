@@ -256,7 +256,12 @@ void delete_by_id(text* &start_text, text* &end_text, number* &start_number, num
         }
     }
 
-    if (!found) {
+    if (found) {
+        attron(COLOR_PAIR(2));
+        mvprintw(9, 0, "ID %d deleted successfully", search_input);
+        attroff(COLOR_PAIR(2));
+    }
+    else {
         attron(COLOR_PAIR(1));
         mvprintw(9, 0, "ID %d not found", search_input);
         attroff(COLOR_PAIR(1));
@@ -350,7 +355,12 @@ void delete_by_name(text* &start_text, text* &end_text, number* &start_number, n
         }
     }
 
-    if (!found) {
+    if (found) {
+        attron(COLOR_PAIR(2));
+        mvprintw(9, 0, "Name \"%s\" deleted successfully", search_input);
+        attroff(COLOR_PAIR(2));
+    }
+    else {
         attron(COLOR_PAIR(1));
         mvprintw(9, 0, "Name \"%s\" not found", search_input);
         attroff(COLOR_PAIR(1));
