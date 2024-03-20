@@ -10,8 +10,8 @@ data = [
     ['6', 'Exemplu Cristi', 'mathematic', '5 23'],
     ['7', 'Exemplu Robert', 'mathematic', '3 7'],
     ['8', 'Exemplu Gr', 'mathematic', '2 5'],
-    ['9', 'Adresa Cristi', 'address', 'Romania Dolj Craiova Inclinata 6'],
-    ['10', 'Adresa Robert', 'address', 'Romania Dolj Craiova Sararilor 19'],
+    ['9', 'Adresa Cristi', 'address', 'Romania Dolj Craiova Surcele 6'],
+    ['10', 'Adresa Robert', 'address', 'Romania Dolj Craiova Stefan cel mare 19'],
     ['11', 'Adresa Gr', 'address', 'Romania Dolj Craiova Brazda 24']
 ]
 
