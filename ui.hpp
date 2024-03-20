@@ -129,6 +129,28 @@ void print_choices(State currentState, text* &start_text, text* &end_text, int &
         mvprintw(12, 0, "Press 'esc' to go back");
     }
 
+    else if (currentState == DELETE_INFO_ID) {
+        mvprintw(2, 0, "Enter the ID to delete: ");
+        refresh();
+        int delete_input;
+        echo();
+        scanw("%d", &delete_input);
+        noecho();
+        delete_by_id(start_text, end_text, start_number, end_number, start_math, end_math, start_adress, end_adress, text_size, number_size, math_size, adress_size, delete_input);
+        mvprintw(12, 0, "Press any key to go back");
+    }
+
+    else if (currentState == DELETE_INFO_NAME) {
+        mvprintw(2, 0, "Enter the name to delete: ");
+        refresh();
+        char delete_input[255];
+        echo();
+        getstr(delete_input);
+        noecho();
+        delete_by_name(start_text, end_text, start_number, end_number, start_math, end_math, start_adress, end_adress, text_size, number_size, math_size, adress_size, delete_input);
+        mvprintw(12, 0, "Press any key to go back");
+    }
+
     else if (currentState == FIND_INFO) {
         mvprintw(2, 0, "Choose an option:");
         mvprintw(4, 0, "1. Find by ID");
@@ -159,16 +181,88 @@ void print_choices(State currentState, text* &start_text, text* &end_text, int &
     }
 
     else if (currentState == SEARCH_INFO) {
-        mvprintw(2, 0, "Search by value: ");
-        // refresh();
-        // char input[100];
-        // echo();
-        // getstr(input);
-        // noecho();
-        // printw("You entered: %s", input);
-        // refresh();
+        mvprintw(2, 0, "Choose an option:");
+        mvprintw(4, 0, "1. Search by Text");
+        mvprintw(5, 0, "2. Search by Number");
+        mvprintw(6, 0, "3. Search by Complex Number");
+        mvprintw(7, 0, "4. Search by Address");
         mvprintw(12, 0, "Press any key to go back");
     }
+
+    else if(currentState == SEARCH_INFO_TEXT) {
+        mvprintw(2, 0, "Enter the text value: ");
+        refresh();
+        char search_input_text[255];
+        echo();
+        getstr(search_input_text);
+        noecho();
+        search_by_text(start_text ,search_input_text);
+        mvprintw(12, 0, "Press any key to go back");
+    }
+
+    else if(currentState == SEARCH_INFO_NUMBER) {
+        mvprintw(2, 0, "Enter the number value: ");
+        refresh();
+        int search_input_number;
+        echo();
+        scanw("%d", &search_input_number);
+        noecho();
+        search_by_number(start_number, search_input_number);
+        mvprintw(12, 0, "Press any key to go back");
+    }
+
+    else if(currentState == SEARCH_INFO_MATH) {
+        mvprintw(2, 0, "Enter the real part: ");
+        refresh();
+        int search_input_real;
+        echo();
+        scanw("%d", &search_input_real);
+        noecho();
+        mvprintw(3, 0, "Enter the imaginary part: ");
+        refresh();
+        int search_input_imag;
+        echo();
+        scanw("%d", &search_input_imag);
+        noecho();
+        search_by_math(start_math, search_input_real, search_input_imag);
+        mvprintw(12, 0, "Press any key to go back");
+    }
+
+    else if(currentState == SEARCH_INFO_ADDRESS) {
+        mvprintw(2, 0, "Enter the country: ");
+        refresh();
+        char search_input_country[255];
+        echo();
+        getstr(search_input_country);
+        noecho();
+        mvprintw(3, 0, "Enter the county: ");
+        refresh();
+        char search_input_county[255];
+        echo();
+        getstr(search_input_county);
+        noecho();
+        mvprintw(4, 0, "Enter the city: ");
+        refresh();
+        char search_input_city[255];
+        echo();
+        getstr(search_input_city);
+        noecho();
+        mvprintw(5, 0, "Enter the street: ");
+        refresh();
+        char search_input_street[255];
+        echo();
+        getstr(search_input_street);
+        noecho();
+        mvprintw(6, 0, "Enter the number: ");
+        refresh();
+        char search_input_number[255];
+        echo();
+        getstr(search_input_number);
+        noecho();
+        search_by_adress(start_adress, search_input_country, search_input_county, search_input_city, search_input_street, search_input_number);
+        mvprintw(12, 0, "Press any key to go back");
+    }
+
 }
 
 void print_title(State currentState, int xMax) {
@@ -200,6 +294,10 @@ void print_title(State currentState, int xMax) {
             break;
 
         case SEARCH_INFO:
+        case SEARCH_INFO_TEXT:
+        case SEARCH_INFO_NUMBER:
+        case SEARCH_INFO_MATH:
+        case SEARCH_INFO_ADDRESS:
             title = "Search Information";
             break;
     }
@@ -365,8 +463,52 @@ State next_state(State currentState, int choice) {
         
         case SEARCH_INFO:
             switch(choice) {
+                case '1':
+                    currentState = SEARCH_INFO_TEXT;
+                    break;
+                case '2':
+                    currentState = SEARCH_INFO_NUMBER;
+                    break;
+                case '3':
+                    currentState = SEARCH_INFO_MATH;
+                    break;
+                case '4':
+                    currentState = SEARCH_INFO_ADDRESS;
+                    break;
                 default:
                     currentState = MAIN_MENU;
+                    break;
+            }
+            break;
+
+        case SEARCH_INFO_TEXT:
+            switch(choice) {
+                default:
+                    currentState = SEARCH_INFO;
+                    break;
+            }
+            break;
+
+        case SEARCH_INFO_NUMBER:
+            switch(choice) {
+                default:
+                    currentState = SEARCH_INFO;
+                    break;
+            }
+            break;
+
+        case SEARCH_INFO_MATH:
+            switch(choice) {
+                default:
+                    currentState = SEARCH_INFO;
+                    break;
+            }
+            break;
+
+        case SEARCH_INFO_ADDRESS:    
+            switch(choice) {
+                default:
+                    currentState = SEARCH_INFO;
                     break;
             }
             break;
