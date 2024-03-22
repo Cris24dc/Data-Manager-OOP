@@ -7,9 +7,9 @@ data = [
     ['3', 'Culoare Cristi', 'text', 'verde'],
     ['4', 'Culoare Robert', 'text', 'albastru'],
     ['5', 'Culoare Gr', 'text', 'rosu'],
-    ['6', 'Exemplu Cristi', 'mathematic', '5 23'],
-    ['7', 'Exemplu Robert', 'mathematic', '3 7'],
-    ['8', 'Exemplu Gr', 'mathematic', '2 5'],
+    ['6', 'Exemplu Cristi', 'complex', '5 23'],
+    ['7', 'Exemplu Robert', 'complex', '3 7'],
+    ['8', 'Exemplu Gr', 'complex', '2 5'],
     ['9', 'Adresa Cristi', 'address', 'Romania Dolj Craiova Surcele 6'],
     ['10', 'Adresa Robert', 'address', 'Romania Dolj Craiova Stefan cel mare 19'],
     ['11', 'Adresa Gr', 'address', 'Romania Dolj Craiova Brazda 24']

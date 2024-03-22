@@ -9,6 +9,7 @@ using namespace std;
 
 int main() {
 
+
     int id = 0;
     int text_size = 0;
     int number_size = 0;
@@ -24,6 +25,8 @@ int main() {
     adress* start_adress = nullptr;
     adress* end_adress = nullptr;
 
+    loader(id, start_text, end_text, text_size, start_number, end_number, number_size, start_math, end_math, math_size, start_adress, end_adress, adress_size);
+    
     //ui:
     initscr();
     cbreak();

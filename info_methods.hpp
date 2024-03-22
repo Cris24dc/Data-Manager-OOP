@@ -2,7 +2,10 @@
 #include <string>
 #include <cstring>
 #include <ncurses.h>
+#include <fstream>
 #include "info_types.hpp"
+using namespace std;
+
 
 void add_text(text* &start_text, text* &end_text, int &id, char* temp_name, char* temp_value, int &text_size) {
     text* ptr = start_text;
@@ -587,5 +590,65 @@ void search_by_adress(adress* adress_ptr, const char* search_input_country, cons
         attron(COLOR_PAIR(1));
         mvprintw(line, 0, "Adress \"%s %s %s str. %s nr. %s\" not found", search_input_country, search_input_county, search_input_city, search_input_street, search_input_number);
         attroff(COLOR_PAIR(1));
+    }
+}
+
+
+int char_to_int(char number[]) {
+    int p = 1, temp_digit, number_int = 0;
+    char temp_char;
+    for(int i = strlen(number)-2; i >= 0; i--){
+        temp_char = number[i];
+        temp_digit = temp_char - '0';
+        number_int = number_int + temp_digit * p;
+        p *= 10;
+    }
+    return number_int;
+}
+
+void loader(int &id, text* &start_text, text* &end_text, int &text_size, number* &start_number, number* &end_number, int &number_size, math* &start_math, math* &end_math, int &math_size, adress* &start_adress, adress* &end_adress, int &adress_size) {
+
+    char* temp_id;
+    char* temp_name;
+    char* temp_value_type;
+    char* temp_value;
+    int temp_value_num;
+    int temp_value_a;
+    int temp_value_b;
+    char* temp_value_country;
+    char* temp_value_county;
+    char* temp_value_city;
+    char* temp_value_street;
+    char* temp_value_number;
+
+    fstream file("data.csv");
+    char line[255];
+
+    while (file.getline(line, 256)) {
+        temp_id = strtok(line, ",");
+        temp_name = strtok(nullptr, ",");
+        temp_value_type = strtok(nullptr, ",");
+        temp_value = strtok(nullptr, ",");
+
+        if(strcmp(temp_value_type, "text") == 0){
+            add_text(start_text, end_text, id, temp_name, temp_value, text_size);
+        }
+        else if(strcmp(temp_value_type, "number") == 0){
+            temp_value_num = char_to_int(temp_value);
+            add_number(start_number, end_number, id, temp_name, temp_value_num, number_size);
+        }
+        else if(strcmp(temp_value_type, "complex") == 0){
+            temp_value_a = char_to_int(strtok(temp_value, " "));
+            temp_value_b = char_to_int(strtok(nullptr, " "));
+            add_math(start_math, end_math, id, temp_name, temp_value_a, temp_value_b, math_size);
+        }
+        else if(strcmp(temp_value_type, "address") == 0){
+            temp_value_country = strtok(temp_value, " ");
+            temp_value_county = strtok(nullptr, " ");
+            temp_value_city = strtok(nullptr, " ");
+            temp_value_street = strtok(nullptr, " ");
+            temp_value_number = strtok(nullptr, " ");
+            add_adress(start_adress, end_adress, id, temp_name, temp_value_country, temp_value_county, temp_value_city, temp_value_street, temp_value_number, adress_size);
+        }
     }
 }
