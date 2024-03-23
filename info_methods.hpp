@@ -594,14 +594,14 @@ void search_by_adress(adress* adress_ptr, const char* search_input_country, cons
 }
 
 
-int char_to_int(char number[]) {
-    int p = 1, temp_digit, number_int = 0;
-    char temp_char;
-    for(int i = strlen(number)-2; i >= 0; i--){
-        temp_char = number[i];
-        temp_digit = temp_char - '0';
-        number_int = number_int + temp_digit * p;
-        p *= 10;
+int char_to_int(const char number[]) {
+    int number_int = 0;
+    int i = 0;
+    while (number[i] != '\0') {
+        if (number[i] >= '0' && number[i] <= '9') {
+            number_int = number_int * 10 + (number[i] - '0');
+        }
+        i++;
     }
     return number_int;
 }

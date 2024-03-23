@@ -1,12 +1,140 @@
-0,Numar Cristi,number,24
-1,Numar Robert,number,23
-2,Numar Gr,number,27
-3,Culoare Cristi,text,verde
-4,Culoare Robert,text,albastru
-5,Culoare Gr,text,rosu
-6,Exemplu Cristi,complex,15 23
-7,Exemplu Robert,complex,3 7
-8,Exemplu Gr,complex,2 5
-9,Adresa Cristi,address,Romania Dolj Craiova Surcele 6
-10,Adresa Robert,address,Romania Dolj Craiova Stefan cel mare 19
-11,Adresa Gr,address,Romania Dolj Craiova Brazda 24
+0,Nicole Smith,address,PapuaNewGuinea Maryland Richport HuertaManor 5928
+1,Paul Lindsey,address,FrenchGuiana Utah Simmonsberg ThomasMount 320
+2,Amanda Brown,address,CookIslands Oregon Angelaview ToddCliff 65763
+3,Amanda Guzman,text,human
+4,Brandon Johnston,text,practice
+5,Nathan Mann,text,return
+6,Katherine Olson,address,DominicanRepublic RhodeIsland NorthDebrachester MarkStation 5191
+7,Rita Chandler,text,rule
+8,Terry Rios,complex,63 22
+9,Aaron Sanchez,complex,13 46
+10,Timothy Blackwell,complex,18 38
+11,Spencer Soto,number,37
+12,Lori Barton,address,Somalia Arizona NorthCindyland SummersCircles 1509
+13,Michael Green,text,eye
+14,Kristen Berg,address,Venezuela NewYork NewBrittany PhillipsCreek 58258
+15,Brandon Myers,number,7
+16,Kyle Lee,address,Togo Vermont Laurenside ValdezTunnel 8306
+17,Stephen Sutton,text,know
+18,Victor Carter,complex,56 39
+19,Gwendolyn Hooper,address,RussianFederation Wyoming PortLance SimsManor 45773
+20,Cassie Dickerson,complex,5 81
+21,Christopher Fisher,address,FaroeIslands Alaska Kristinton ChristinaCrescent 507
+22,John Jones,address,Seychelles Kentucky Fosterberg RitterMountains 9274
+23,Jesus Sullivan,address,Oman Arizona WestDanielleland EdwardRue 811
+24,Shawn Yang,number,77
+25,Charles Chang,text,south
+26,Preston Clark,text,girl
+27,Jonathon Dominguez,complex,80 15
+28,Sarah Kent,text,body
+29,Rachel Joseph,number,22
+30,Todd Burton,complex,1 47
+31,Raymond Washington,number,22
+32,Brandon Smith,number,82
+33,Brenda Hernandez,number,92
+34,Lisa Allison,complex,2 56
+35,Christie Carrillo,address,Bangladesh Ohio WestEricshire TaylorLights 875
+36,Christina Fry,address,Namibia NewYork Bowmanborough GregEstates 6509
+37,Johnny Hawkins,text,including
+38,Matthew Phillips,complex,29 53
+39,Jessica White,text,analysis
+40,Jamie Walker,text,often
+41,Kaitlyn Gonzalez,complex,57 86
+42,Charles Sanders,address,Belgium Ohio Christopherstad WillieSpur 726
+43,Charles Washington,number,56
+44,Valerie Cuevas,text,loss
+45,Grace Martinez,number,55
+46,Craig Morgan,text,three
+47,Amber Schultz,text,game
+48,James Vaughn,text,dinner
+49,Monica Rivera,number,98
+50,Jesse Sanders,text,far
+51,David Ramos,address,LaoPeople'sDemocraticRepublic Michigan PortCathyshire EdwardClub 48430
+52,Gregory Robertson,address,Yemen Georgia LakeDanielle RyanMountain 82616
+53,Alexandra Martinez,address,Canada Ohio LakeDanny PeterLock 170
+54,John Waters,address,Taiwan Washington LakeScott SimmonsHarbor 938
+55,Lynn Shea,address,Mauritania Tennessee Jonathanchester TurnerPines 66774
+56,Jennifer Brown,complex,39 69
+57,Christopher Horton,text,one
+58,Brian Nichols,number,24
+59,Nicholas Brown,number,42
+60,Denise Peterson,text,treat
+61,Dale Jacobson,text,risk
+62,Jamie Clark,complex,36 5
+63,David Macias,complex,24 2
+64,Kelly Gray,complex,14 64
+65,Sandra Nash,address,Taiwan Georgia Villaport SullivanGlen 14846
+66,Casey Ross,address,BouvetIsland(Bouvetoya) Mississippi NewBrenda BrownValleys 908
+67,Amanda Garcia,number,85
+68,Kyle Miller,text,perhaps
+69,Dwayne Mercado,address,Chad Hawaii WestMolly BeckTerrace 647
+70,Megan Rowe,number,91
+71,Charles Escobar MD,number,4
+72,Eric Silva,address,SanMarino Colorado Cherylburgh WongViaduct 886
+73,Carol Garcia,text,onto
+74,Bryan Mendez,text,very
+75,Trevor Moreno,complex,59 14
+76,Brian Morgan,number,91
+77,Jordan Greer,text,under
+78,Rachael Phillips,number,60
+79,Jamie Owen,number,93
+80,Maria Moore,number,13
+81,Christine Romero,complex,11 41
+82,Mrs. Brittany Edwards DVM,address,Japan Florida PortBrooketon RodriguezMill 9242
+83,Michael Salas,address,UnitedArabEmirates Kentucky Kelleyfurt HeatherGardens 8642
+84,Brian Ruiz,address,Mexico Tennessee EastBrandon BlakeFort 4267
+85,Tyrone Schroeder,number,12
+86,Desiree Chen,text,simply
+87,Alicia Robinson,address,SyrianArabRepublic Washington SouthSheri VictorCreek 1538
+88,Christy White,address,Mauritania NewYork Cooperville MaryPike 97360
+89,Michael Sanders,complex,69 79
+90,Amy Wright,address,UnitedKingdom Georgia Whiteshire WrightMountains 1860
+91,John Gonzalez,text,site
+92,Ronald Howell,address,Tuvalu Oregon Steelemouth YoungParkway 53523
+93,Sherry Lopez,address,Chile Washington NorthKyliebury HammondMeadow 684
+94,Melinda Kelley,address,HongKong Kentucky Sarahfurt AlexanderCliffs 78091
+95,David Adams,address,WesternSahara Georgia Rhodesstad RobertKnolls 50651
+96,James Conner,address,Philippines Maine EastDaniel DawnHollow 4273
+97,Melanie Acosta,complex,80 11
+98,Robert Kelly,complex,2 4
+99,Shawn Carroll,complex,39 4
+100,Megan Sparks,complex,23 40
+101,Steven Villegas,number,49
+102,Melinda Best,number,53
+103,Angela Simpson,text,especially
+104,Robert Bradley,complex,26 38
+105,Wendy Harris,number,49
+106,William Chapman,text,part
+107,Natalie Mays,address,Mozambique Arizona WestMichael NicoleRoads 59378
+108,Patty Obrien,address,Afghanistan Ohio Michaelburgh DonaldRidges 053
+109,Paul Butler,complex,18 71
+110,Timothy Anderson,address,Namibia Utah Timothyport JessicaTrafficway 39613
+111,Mr. Jacob Young,complex,7 64
+112,William Roth,complex,29 75
+113,Catherine Chavez,text,last
+114,Timothy Sanchez,complex,38 63
+115,Ashley Smith,number,36
+116,Pamela Howe,address,Svalbard&JanMayenIslands NewMexico EastCraig MiddletonDam 843
+117,Ronald Taylor,number,41
+118,Dawn Bryant,text,person
+119,Eric Rose,text,clear
+120,Kevin Wilson,text,research
+121,Diane Schneider,number,55
+122,Thomas Miles,text,source
+123,Dr. Stephanie Roberson DDS,number,94
+124,Connie Davis,number,5
+125,Ryan Hughes MD,text,son
+126,Alison Peters,number,57
+127,Cynthia Campbell,text,value
+128,Michael Brown,address,BosniaandHerzegovina Wyoming Elizabethburgh JacksonCourts 89250
+129,Ryan Adams,complex,30 57
+130,Robert Larson,complex,70 88
+131,Todd Morton,text,fact
+132,Candice Morrison,number,37
+133,Ronald Boyle,address,Reunion Vermont WestVicki KlineAvenue 81866
+134,George Howard,text,protect
+135,Diana Johnson,text,staff
+136,Eric Herrera,complex,15 67
+137,Ricardo Davis,complex,99 13
+138,Karen Dixon,text,prevent
+139,Daniel Lewis,address,Yemen Texas LakeSheena CookFalls 7635

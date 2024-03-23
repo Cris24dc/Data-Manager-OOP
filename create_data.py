@@ -1,21 +1,42 @@
 import csv
+from faker import Faker
+import random
 
-data = [
-    ['0', 'Numar Cristi', 'number', '24'],
-    ['1', 'Numar Robert', 'number', '23'],
-    ['2', 'Numar Gr', 'number', '27'],
-    ['3', 'Culoare Cristi', 'text', 'verde'],
-    ['4', 'Culoare Robert', 'text', 'albastru'],
-    ['5', 'Culoare Gr', 'text', 'rosu'],
-    ['6', 'Exemplu Cristi', 'complex', '5 23'],
-    ['7', 'Exemplu Robert', 'complex', '3 7'],
-    ['8', 'Exemplu Gr', 'complex', '2 5'],
-    ['9', 'Adresa Cristi', 'address', 'Romania Dolj Craiova Surcele 6'],
-    ['10', 'Adresa Robert', 'address', 'Romania Dolj Craiova Stefan cel mare 19'],
-    ['11', 'Adresa Gr', 'address', 'Romania Dolj Craiova Brazda 24']
-]
+fake = Faker()
+
+def generate_random_data(num_rows):
+    data = []
+    for i in range(num_rows):
+        unique_id = str(i)
+        
+        unique_name = fake.name()
+        while any(unique_name in row for row in data):
+            unique_name = fake.name()
+
+        value_type = random.choice(['number', 'text', 'complex', 'address'])
+        
+        if value_type == 'number':
+            value = str(random.randint(1, 100))
+        elif value_type == 'text':
+            value = fake.word()
+        elif value_type == 'complex':
+            value = ' '.join(str(random.randint(1, 100)) for _ in range(2))
+        elif value_type == 'address':
+            country = fake.country().replace(" ", "")
+            county = fake.state().replace(" ", "")
+            city = fake.city().replace(" ", "")
+            street = fake.street_name().replace(" ", "")
+            number = fake.building_number().replace(" ", "")
+            value = f"{country} {county} {city} {street} {number}"
+
+        data.append([unique_id, unique_name, value_type, value])
+    
+    return data
 
 file_path = './data.csv'
+num_rows = int(input("Enter the number of values to generate: "))
+
+data = generate_random_data(num_rows)
 
 with open(file_path, 'w', newline='') as file:
     writer = csv.writer(file)
