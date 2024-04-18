@@ -2,31 +2,17 @@
 #include <ncurses.h>
 #include <string>
 #include <cstring>
+#include <vector>
 #include "state.hpp"
 #include "ui.hpp"
+#include "infoClasses.hpp"
 using namespace std;
 
 
 int main() {
 
+    vector<info*> infoList;
 
-    int id = 0;
-    int text_size = 0;
-    int number_size = 0;
-    int math_size = 0;
-    int adress_size = 0;
-
-    text* start_text = nullptr;
-    text* end_text = nullptr;
-    number* start_number = nullptr;
-    number* end_number = nullptr;
-    math* start_math = nullptr;
-    math* end_math = nullptr;
-    adress* start_adress = nullptr;
-    adress* end_adress = nullptr;
-
-    loader(id, start_text, end_text, text_size, start_number, end_number, number_size, start_math, end_math, math_size, start_adress, end_adress, adress_size);
-    
     //ui:
     initscr();
     cbreak();
@@ -48,7 +34,7 @@ int main() {
 
         print_title(currentState, xMax);
 
-        print_choices(currentState, start_text, end_text, id, text_size, start_number, end_number, number_size, start_math, end_math, math_size, start_adress, end_adress, adress_size);
+        print_choices(currentState, infoList);
 
         refresh();
 
