@@ -5,13 +5,13 @@
 #include <vector>
 #include "state.hpp"
 #include "ui.hpp"
-#include "infoClasses.hpp"
+#include "classes.hpp"
 using namespace std;
 
 
 int main() {
 
-    vector<info*> infoList;
+    vector<Info*> infoList;
 
     //ui:
     initscr();
