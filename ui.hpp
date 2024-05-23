@@ -5,7 +5,6 @@
 #include "state.hpp"
 #include "classes.hpp"
 
-
 using namespace std;
 
 void print_choices(State currentState, vector<Info*> &data) {
@@ -37,7 +36,7 @@ void print_choices(State currentState, vector<Info*> &data) {
         refresh();
         getstr(temp_value);
         noecho();
-        addTextInfo(data, temp_name, temp_value);
+        addInfo(data, temp_name, temp_value);
         mvprintw(12, 0, "Press any key to go back");
     }
 
@@ -50,11 +49,21 @@ void print_choices(State currentState, vector<Info*> &data) {
         noecho();
         mvprintw(3, 0, "Enter the value of the number: ");
         refresh();
-        int temp_value;
+        char temp_value[255];
         echo();
-        scanw("%d", &temp_value);
+        getstr(temp_value);
+        int temp_value_int;
+        try {
+            temp_value_int = stoi(temp_value);
+        } catch (invalid_argument e) {
+            attron(COLOR_PAIR(1));
+            mvprintw(12, 0, "Invalid number");
+            attroff(COLOR_PAIR(1));
+            mvprintw(13, 0, "Press any key to go back");
+            return;
+        }
         noecho();
-        addNumberInfo(data, temp_name, temp_value);
+        addInfo(data, temp_name, temp_value_int);
         mvprintw(12, 0, "Press any key to go back");
     }
 
@@ -67,17 +76,37 @@ void print_choices(State currentState, vector<Info*> &data) {
         noecho();
         mvprintw(3, 0, "Enter the real part: ");
         refresh();
-        int temp_a;
+        char temp_a[255];
         echo();
-        scanw("%d", &temp_a);
+        getstr(temp_a);
+        int temp_a_int;
+        try {
+            temp_a_int = stoi(temp_a);
+        } catch (invalid_argument e) {
+            attron(COLOR_PAIR(1));
+            mvprintw(12, 0, "Invalid real part number");
+            attroff(COLOR_PAIR(1));
+            mvprintw(13, 0, "Press any key to go back");
+            return;
+        }
         noecho();
         mvprintw(4, 0, "Enter the imaginary part: ");
         refresh();
-        int temp_b;
+        char temp_b[255];
         echo();
-        scanw("%d", &temp_b);
+        getstr(temp_b);
+        int temp_b_int;
+        try {
+            temp_b_int = stoi(temp_b);
+        } catch (invalid_argument e) {
+            attron(COLOR_PAIR(1));
+            mvprintw(12, 0, "Invalid imaginary part number");
+            attroff(COLOR_PAIR(1));
+            mvprintw(13, 0, "Press any key to go back");
+            return;
+        }
         noecho();
-        addMathInfo(data, temp_name, temp_a, temp_b);
+        addInfo(data, temp_name, temp_a_int, temp_b_int);
         mvprintw(12, 0, "Press any key to go back");
     }
 
@@ -117,8 +146,18 @@ void print_choices(State currentState, vector<Info*> &data) {
         char temp_numar[255];
         echo();
         getstr(temp_numar);
+        int temp_numar_int;
+        try {
+            temp_numar_int = stoi(temp_numar);
+        } catch (invalid_argument e) {
+            attron(COLOR_PAIR(1));
+            mvprintw(12, 0, "Invalid address number");
+            attroff(COLOR_PAIR(1));
+            mvprintw(13, 0, "Press any key to go back");
+            return;
+        }
         noecho();
-        addAddressInfo(data, temp_name, temp_tara, temp_judet, temp_oras, temp_strada, temp_numar);
+        addInfo(data, temp_name, temp_tara, temp_judet, temp_oras, temp_strada, temp_numar);
         mvprintw(12, 0, "Press any key to go back");
     }
 
@@ -196,7 +235,7 @@ void print_choices(State currentState, vector<Info*> &data) {
         echo();
         getstr(search_input_text);
         noecho();
-        searchByTextValue(data, search_input_text);
+        seachByValue(data, search_input_text);
         mvprintw(12, 0, "Press any key to go back");
     }
 
@@ -207,7 +246,7 @@ void print_choices(State currentState, vector<Info*> &data) {
         echo();
         scanw("%d", &search_input_number);
         noecho();
-        searchByNumberValue(data, search_input_number);
+        seachByValue(data, search_input_number);
         mvprintw(12, 0, "Press any key to go back");
     }
 
@@ -224,7 +263,7 @@ void print_choices(State currentState, vector<Info*> &data) {
         echo();
         scanw("%d", &search_input_imag);
         noecho();
-        searchByMathValue(data, search_input_real, search_input_imag);
+        seachByValue(data, search_input_real, search_input_imag);
         mvprintw(12, 0, "Press any key to go back");
     }
 
@@ -259,7 +298,7 @@ void print_choices(State currentState, vector<Info*> &data) {
         echo();
         getstr(search_input_number);
         noecho();
-        searchByAddressValue(data, search_input_country, search_input_county, search_input_city, search_input_street, search_input_number);
+        seachByValue(data, search_input_country, search_input_county, search_input_city, search_input_street, search_input_number);
         mvprintw(12, 0, "Press any key to go back");
     }
 

@@ -8,7 +8,6 @@
 #include "classes.hpp"
 using namespace std;
 
-
 int main() {
 
     vector<Info*> infoList;
@@ -27,8 +26,10 @@ int main() {
     int yMax, xMax;
     getmaxyx(stdscr, yMax, xMax);
 
+    // start state
     State currentState = MAIN_MENU;
 
+    // main loop
     while (true) {
         clear();
 
@@ -43,6 +44,7 @@ int main() {
         currentState = next_state(currentState, choice);
     }
 
+    //end ui
     endwin();
 
     return 0;

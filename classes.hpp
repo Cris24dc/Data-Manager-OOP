@@ -262,8 +262,7 @@ void Math::setA(int a) {
 
 void Math::setB(int b) {
     B = b;
-}
-
+} 
 int Math::getA() {
     return A;
 }
@@ -471,12 +470,12 @@ void findByName(vector<Info*> &data, const char* name) {
     attroff(COLOR_PAIR(1));
 }
 
-void addTextInfo(vector<Info*> &data, const char* name, const char* value) {
+void addInfo(vector<Info*>& data, const char* name, const char* value) {
     bool found = false;
 
     for (int i = 0; i < data.size(); i++) {
-        if (strcmp(data[i]->getName(), name) == 0) {
-            Text* elem = dynamic_cast<Text*>(data[i]);
+        if (typeid(*data[i]) == typeid(Text) && strcmp(data[i]->getName(), name) == 0) {
+            Text* elem = static_cast<Text*>(data[i]);
             const char* oldValue = elem->getValue();
             char* newValue = new char[strlen(oldValue) + strlen(value) + 1];
             strcpy(newValue, oldValue);
@@ -504,14 +503,12 @@ void addTextInfo(vector<Info*> &data, const char* name, const char* value) {
     }
 }
 
-void addNumberInfo(vector<Info*> &data, const char* name, int value) {
+void addInfo(vector<Info*>& data, const char* name, int value) {
     bool found = false;
 
-    // Search if name already exists
     for (int i = 0; i < data.size(); i++) {
-        if (strcmp(data[i]->getName(), name) == 0) {
-            // Name already exists, add numbers
-            Number* elem = dynamic_cast<Number*>(data[i]);
+        if (typeid(*data[i]) == typeid(Number) && strcmp(data[i]->getName(), name) == 0) {
+            Number* elem = static_cast<Number*>(data[i]);
             int oldValue = elem->getValue();
             elem->setValue(oldValue + value);
             attron(COLOR_PAIR(2));
@@ -535,12 +532,12 @@ void addNumberInfo(vector<Info*> &data, const char* name, int value) {
     }
 }
 
-void addMathInfo(vector<Info*> &data, const char* name, int a, int b) {
+void addInfo(vector<Info*>& data, const char* name, int a, int b) {
     bool found = false;
 
     for (int i = 0; i < data.size(); i++) {
-        if (strcmp(data[i]->getName(), name) == 0) {
-            Math* elem = dynamic_cast<Math*>(data[i]);
+        if (typeid(*data[i]) == typeid(Math) && strcmp(data[i]->getName(), name) == 0) {
+            Math* elem = static_cast<Math*>(data[i]);
             int oldA = elem->getA();
             int oldB = elem->getB();
             elem->setA(oldA + a);
@@ -567,14 +564,14 @@ void addMathInfo(vector<Info*> &data, const char* name, int a, int b) {
     }
 }
 
-void addAddressInfo(vector<Info*> &data, const char* name, const char* country, const char* county, const char* city, const char* street, const char* number) {
+void addInfo(vector<Info*>& data, const char* name, const char* country, const char* county, const char* city, const char* street, const char* number) {
     bool found = false;
 
     for (int i = 0; i < data.size(); i++) {
-        if (strcmp(data[i]->getName(), name) == 0) {
+        if (typeid(*data[i]) == typeid(Address) && strcmp(data[i]->getName(), name) == 0) {
             attron(COLOR_PAIR(1));
-            mvprintw(9, 0, "ERROR: Adress name already exists");
-            mvprintw(10, 0, "Can't add an adress with the same name");
+            mvprintw(9, 0, "ERROR: Address name already exists");
+            mvprintw(10, 0, "Can't add an address with the same name");
             attroff(COLOR_PAIR(1));
             found = true;
             break;
@@ -630,7 +627,7 @@ void deleteInfoByName(vector<Info*> &data, const char* name) {
 
 //search by values
 
-void searchByTextValue(vector<Info*> &data, const char* value) {
+void seachByValue(vector<Info*> &data, const char* value) {
     bool found = false;
 
     for (int i = 0; i < data.size(); i++) {
@@ -647,7 +644,7 @@ void searchByTextValue(vector<Info*> &data, const char* value) {
     }
 }
 
-void searchByNumberValue(vector<Info*> &data, int value) {
+void seachByValue(vector<Info*> &data, int value) {
     bool found = false;
 
     for (int i = 0; i < data.size(); i++) {
@@ -664,7 +661,7 @@ void searchByNumberValue(vector<Info*> &data, int value) {
     }
 }
 
-void searchByMathValue(vector<Info*> &data, int a, int b) {
+void seachByValue(vector<Info*> &data, int a, int b) {
     bool found = false;
 
     for (int i = 0; i < data.size(); i++) {
@@ -681,7 +678,7 @@ void searchByMathValue(vector<Info*> &data, int a, int b) {
     }
 }
 
-void searchByAddressValue(vector<Info*> &data, const char* country, const char* county, const char* city, const char* street, const char* number) {
+void seachByValue(vector<Info*> &data, const char* country, const char* county, const char* city, const char* street, const char* number) {
     bool found = false;
 
     for (int i = 0; i < data.size(); i++) {
