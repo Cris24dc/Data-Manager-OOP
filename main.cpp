@@ -10,7 +10,11 @@ using namespace std;
 
 int main() {
 
+    // list of info objects
     vector<Info*> infoList;
+
+    // owner with singleton pattern
+    Owner& owner = Owner::getInstance("Andrei Cristian");
 
     //ui:
     initscr();
@@ -21,6 +25,7 @@ int main() {
     start_color();
     init_pair(1, COLOR_RED, COLOR_BLACK);
     init_pair(2, COLOR_GREEN, COLOR_BLACK);
+    init_pair(3, COLOR_YELLOW, COLOR_BLACK);
 
     //size of the screen
     int yMax, xMax;
@@ -34,6 +39,8 @@ int main() {
         clear();
 
         print_title(currentState, xMax);
+
+        owner.print();
 
         print_choices(currentState, infoList);
 

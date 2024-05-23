@@ -695,4 +695,24 @@ void seachByValue(vector<Info*> &data, const char* country, const char* county, 
     }
 }
 
+class Owner {
+private:
+    string name;
+
+    Owner(const string& newName) : name(newName) {}
+    ~Owner() = default;
+
+public:
+    static Owner& getInstance(const string& newName = "DefaultName") {
+        static Owner instance(newName);
+        return instance;
+    }
+
+    void print() {
+        attron(COLOR_PAIR(3));
+        mvprintw(1, 0, "Owner: %s", name.c_str());
+        attroff(COLOR_PAIR(3));
+    }
+};
+
 #endif
