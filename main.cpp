@@ -13,7 +13,7 @@ int main() {
     // list of info objects
     vector<Info*> infoList;
 
-    // owner with singleton pattern
+    // create owner with singleton pattern
     Owner& owner = Owner::getInstance("Andrei Cristian");
 
     //ui:
