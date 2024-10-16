@@ -9,32 +9,38 @@
 using namespace std;
 
 int main() {
-
     // list of info objects
     vector<Info*> infoList;
 
-    // create owner with singleton pattern
-    Owner& owner = Owner::getInstance("Andrei Cristian");
-
-    //ui:
+    // Initialize ncurses
     initscr();
     cbreak();
     noecho();
 
-    //colors:
+    // Prompt for username
+    string username;
+    char input[100];
+    mvprintw(0, 0, "Enter username: ");
+    getnstr(input, sizeof(input) - 1);
+    username = string(input);
+
+    // Create owner with singleton pattern using user input
+    Owner& owner = Owner::getInstance(username);
+
+    // Colors
     start_color();
     init_pair(1, COLOR_RED, COLOR_BLACK);
     init_pair(2, COLOR_GREEN, COLOR_BLACK);
     init_pair(3, COLOR_YELLOW, COLOR_BLACK);
 
-    //size of the screen
+    // Size of the screen
     int yMax, xMax;
     getmaxyx(stdscr, yMax, xMax);
 
-    // start state
+    // Start state
     State currentState = MAIN_MENU;
 
-    // main loop
+    // Main loop
     while (true) {
         clear();
 
@@ -51,7 +57,7 @@ int main() {
         currentState = next_state(currentState, choice);
     }
 
-    //end ui
+    // End UI
     endwin();
 
     return 0;

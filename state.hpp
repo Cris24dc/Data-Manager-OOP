@@ -21,5 +21,4 @@ enum State {
     SEARCH_INFO_ADDRESS
 };
 
-
 #endif
