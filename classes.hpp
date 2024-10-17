@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <cstring>
+#include <fstream>
 #include <vector>
 #include <typeinfo>
 #include <ncurses.h>
@@ -18,7 +19,7 @@ public:
     Info();
     Info(const char*);
     Info(Info&);
-    ~Info();  
+    ~Info();
     void operator=(Info&);
     void setName(const char*);
     const char* getName();
@@ -470,7 +471,7 @@ void findByName(vector<Info*> &data, const char* name) {
     attroff(COLOR_PAIR(1));
 }
 
-void addInfo(vector<Info*>& data, const char* name, const char* value) {
+void addInfo(vector<Info*>& data, const char* name, const char* value, const string& filePath) {
     bool found = false;
 
     for (int i = 0; i < data.size(); i++) {
@@ -497,13 +498,19 @@ void addInfo(vector<Info*>& data, const char* name, const char* value) {
         elem->setValue(value);
         data.push_back(elem);
 
+        ofstream file(filePath, ios::app);
+        if (file.is_open()) {
+            file << elem->getId() << "," << elem->getName() << "," << "text" << "," << elem->getValue() << endl;
+            file.close();
+        }
+
         attron(COLOR_PAIR(2));
         mvprintw(9, 0, "Text added successfully");
         attroff(COLOR_PAIR(2));
     }
 }
 
-void addInfo(vector<Info*>& data, const char* name, int value) {
+void addInfo(vector<Info*>& data, const char* name, int value, const string& filePath) {
     bool found = false;
 
     for (int i = 0; i < data.size(); i++) {
@@ -526,13 +533,19 @@ void addInfo(vector<Info*>& data, const char* name, int value) {
         elem->setValue(value);
         data.push_back(elem);
 
+        ofstream file(filePath, ios::app);
+        if (file.is_open()) {
+            file << elem->getId() << "," << elem->getName() << "," << "number" << "," << elem->getValue() << endl;
+            file.close();
+        }
+
         attron(COLOR_PAIR(2));
         mvprintw(9, 0, "Number added successfully");
         attroff(COLOR_PAIR(2));
     }
 }
 
-void addInfo(vector<Info*>& data, const char* name, int a, int b) {
+void addInfo(vector<Info*>& data, const char* name, int a, int b, const string& filePath) {
     bool found = false;
 
     for (int i = 0; i < data.size(); i++) {
@@ -544,7 +557,7 @@ void addInfo(vector<Info*>& data, const char* name, int a, int b) {
             elem->setB(oldB + b);
             attron(COLOR_PAIR(2));
             mvprintw(9, 0, "Math name already exists");
-            mvprintw(10, 0, "Both numbers have been added");
+            mvprintw(10, 0, "Both complex numbers have been added");
             attroff(COLOR_PAIR(2));
             found = true;
             break;
@@ -557,6 +570,12 @@ void addInfo(vector<Info*>& data, const char* name, int a, int b) {
         elem->setA(a);
         elem->setB(b);
         data.push_back(elem);
+        
+        ofstream file(filePath, ios::app);
+        if (file.is_open()) {
+            file << elem->getId() << "," << elem->getName() << "," << "complex" << "," << elem->getA() << " " << elem->getB() << endl;
+            file.close();
+        }
 
         attron(COLOR_PAIR(2));
         mvprintw(9, 0, "Math added successfully");
@@ -564,7 +583,7 @@ void addInfo(vector<Info*>& data, const char* name, int a, int b) {
     }
 }
 
-void addInfo(vector<Info*>& data, const char* name, const char* country, const char* county, const char* city, const char* street, const char* number) {
+void addInfo(vector<Info*>& data, const char* name, const char* country, const char* county, const char* city, const char* street, const char* number, const string& filePath) {
     bool found = false;
 
     for (int i = 0; i < data.size(); i++) {
@@ -587,6 +606,14 @@ void addInfo(vector<Info*>& data, const char* name, const char* country, const c
         elem->setStreet(street);
         elem->setNumber(number);
         data.push_back(elem);
+        
+        ofstream file(filePath, ios::app);
+        if (file.is_open()) {
+            file << elem->getId() << "," << elem->getName() << "," << "address" << "," 
+                 << elem->getCountry() << " " << elem->getCounty() << " " << elem->getCity() << " "
+                 << elem->getStreet() << " " << elem->getNumber() << endl;
+            file.close();
+        }
 
         attron(COLOR_PAIR(2));
         mvprintw(9, 0, "Address added successfully");
@@ -594,11 +621,46 @@ void addInfo(vector<Info*>& data, const char* name, const char* country, const c
     }
 }
 
-void deleteInfoById(vector<Info*> &data, int id) {
+
+// Function to write data back to the CSV file
+void writeDataToCSV(const vector<Info*>& data, const string& filePath) {
+    ofstream file(filePath);
+    if (file.is_open()) {
+        for (const auto& item : data) {
+            string type;
+            if (typeid(*item) == typeid(Text)) {
+                Text* textItem = static_cast<Text*>(item);
+                type = "text";
+                file << textItem->getId() << "," << textItem->getName() << "," << type << "," << textItem->getValue() << endl;
+            } else if (typeid(*item) == typeid(Number)) {
+                Number* numberItem = static_cast<Number*>(item);
+                type = "number";
+                file << numberItem->getId() << "," << numberItem->getName() << "," << type << "," << numberItem->getValue() << endl;
+            } else if (typeid(*item) == typeid(Math)) {
+                Math* mathItem = static_cast<Math*>(item);
+                type = "complex";
+                file << mathItem->getId() << "," << mathItem->getName() << "," << type << "," 
+                     << mathItem->getA() << " " << mathItem->getB() << endl;
+            } else if (typeid(*item) == typeid(Address)) {
+                Address* addressItem = static_cast<Address*>(item);
+                type = "address";
+                file << addressItem->getId() << "," << addressItem->getName() << "," << type << ","
+                     << addressItem->getCountry() << " " << addressItem->getCounty() << " "
+                     << addressItem->getCity() << " " << addressItem->getStreet() << " "
+                     << addressItem->getNumber() << endl;
+            }
+        }
+        file.close();
+    }
+}
+
+// Delete by ID
+void deleteInfoById(vector<Info*>& data, int id, const string& filePath) {
     for (int i = 0; i < data.size(); i++) {
         if (data[i]->getId() == id) {
             delete data[i];
             data.erase(data.begin() + i);
+            writeDataToCSV(data, filePath);
             attron(COLOR_PAIR(2));
             mvprintw(9, 0, "ID %d deleted successfully", id);
             attroff(COLOR_PAIR(2));
@@ -610,10 +672,13 @@ void deleteInfoById(vector<Info*> &data, int id) {
     attroff(COLOR_PAIR(1));
 }
 
-void deleteInfoByName(vector<Info*> &data, const char* name) {
+// Delete by Name
+void deleteInfoByName(vector<Info*>& data, const char* name, const string& filePath) {
     for (int i = 0; i < data.size(); i++) {
         if (strcmp(data[i]->getName(), name) == 0) {
             delete data[i];
+            data.erase(data.begin() + i);
+            writeDataToCSV(data, filePath);
             attron(COLOR_PAIR(2));
             mvprintw(9, 0, "Name \"%s\" deleted successfully", name);
             attroff(COLOR_PAIR(2));
@@ -695,24 +760,69 @@ void seachByValue(vector<Info*> &data, const char* country, const char* county, 
     }
 }
 
-class Owner {
+class File {
 private:
     string name;
 
-    Owner(const string& newName) : name(newName) {}
-    ~Owner() = default;
+    File(const string& newName) : name(newName) {}
+    ~File() = default;
 
 public:
-    static Owner& getInstance(const string& newName = "DefaultName") {
-        static Owner instance(newName);
+    static File& getInstance(const string& newName = "DefaultName") {
+        static File instance(newName);
         return instance;
     }
 
     void print() {
         attron(COLOR_PAIR(3));
-        mvprintw(1, 0, "Owner: %s", name.c_str());
+        mvprintw(1, 0, "File: %s", name.c_str());
         attroff(COLOR_PAIR(3));
     }
 };
+
+void parseCSV(const string& filename, vector<Info*>& infoList) {
+    ifstream file(filename);
+    if (!file.is_open()) {
+        cerr << "Could not open the file: " << filename << endl;
+        return;
+    }
+
+    string line;
+    while (getline(file, line)) {
+        istringstream ss(line);
+        string id_str, name, type, value;
+
+        // Parse each field
+        if (getline(ss, id_str, ',') &&
+            getline(ss, name, ',') &&
+            getline(ss, type, ',') &&
+            getline(ss, value)) {
+
+            // Determine the type and create the appropriate Info subclass
+            if (type == "text") {
+                infoList.push_back(new Text(name.c_str(), value.c_str()));
+            } else if (type == "number") {
+                infoList.push_back(new Number(name.c_str(), stoi(value)));
+            } else if (type == "address") {
+                string country, county, city, street, number;
+                istringstream valueStream(value);
+                getline(valueStream, country, ' ');
+                getline(valueStream, county, ' ');
+                getline(valueStream, city, ' ');
+                getline(valueStream, street, ' ');
+                getline(valueStream, number, ' ');
+                infoList.push_back(new Address(name.c_str(), country.c_str(), county.c_str(), city.c_str(), street.c_str(), number.c_str()));
+            } else if(type == "complex") {
+                stringstream complexStream(value);
+                string realPartStr, complexPartStr;
+                getline(complexStream, realPartStr, ' ');
+                getline(complexStream, complexPartStr, ' ');
+                int realPart = stoi(realPartStr);
+                int complexPart = stoi(complexPartStr);
+                infoList.push_back(new Math(name.c_str(), realPart, complexPart));
+            }
+        }
+    }
+}
 
 #endif

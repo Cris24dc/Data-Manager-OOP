@@ -7,7 +7,7 @@
 
 using namespace std;
 
-void print_choices(State currentState, vector<Info*> &data) {
+void print_choices(State currentState, vector<Info*> &data, const string& filePath) {
     if (currentState == MAIN_MENU) {
         mvprintw(2, 0, "Choose an option:");
         mvprintw(4, 0, "1. Add Information");
@@ -36,7 +36,7 @@ void print_choices(State currentState, vector<Info*> &data) {
         refresh();
         getstr(temp_value);
         noecho();
-        addInfo(data, temp_name, temp_value);
+        addInfo(data, temp_name, temp_value, filePath);
         mvprintw(12, 0, "Press any key to go back");
     }
 
@@ -63,7 +63,7 @@ void print_choices(State currentState, vector<Info*> &data) {
             return;
         }
         noecho();
-        addInfo(data, temp_name, temp_value_int);
+        addInfo(data, temp_name, temp_value_int, filePath);
         mvprintw(12, 0, "Press any key to go back");
     }
 
@@ -106,7 +106,7 @@ void print_choices(State currentState, vector<Info*> &data) {
             return;
         }
         noecho();
-        addInfo(data, temp_name, temp_a_int, temp_b_int);
+        addInfo(data, temp_name, temp_a_int, temp_b_int, filePath);
         mvprintw(12, 0, "Press any key to go back");
     }
 
@@ -157,7 +157,7 @@ void print_choices(State currentState, vector<Info*> &data) {
             return;
         }
         noecho();
-        addInfo(data, temp_name, temp_tara, temp_judet, temp_oras, temp_strada, temp_numar);
+        addInfo(data, temp_name, temp_tara, temp_judet, temp_oras, temp_strada, temp_numar, filePath);
         mvprintw(12, 0, "Press any key to go back");
     }
 
@@ -175,7 +175,7 @@ void print_choices(State currentState, vector<Info*> &data) {
         echo();
         scanw("%d", &delete_input);
         noecho();
-        deleteInfoById(data, delete_input);
+        deleteInfoById(data, delete_input, filePath);
         mvprintw(12, 0, "Press any key to go back");
     }
 
@@ -186,7 +186,7 @@ void print_choices(State currentState, vector<Info*> &data) {
         echo();
         getstr(delete_input);
         noecho();
-        deleteInfoByName(data, delete_input);
+        deleteInfoByName(data, delete_input, filePath);
         mvprintw(12, 0, "Press any key to go back");
     }
 

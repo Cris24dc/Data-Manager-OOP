@@ -3,6 +3,8 @@
 #include <string>
 #include <cstring>
 #include <vector>
+#include <sstream>
+#include <fstream>
 #include "state.hpp"
 #include "ui.hpp"
 #include "classes.hpp"
@@ -17,21 +19,44 @@ int main() {
     cbreak();
     noecho();
 
-    // Prompt for username
-    string username;
-    char input[100];
-    mvprintw(0, 0, "Enter username: ");
-    getnstr(input, sizeof(input) - 1);
-    username = string(input);
-
-    // Create owner with singleton pattern using user input
-    Owner& owner = Owner::getInstance(username);
-
     // Colors
     start_color();
     init_pair(1, COLOR_RED, COLOR_BLACK);
     init_pair(2, COLOR_GREEN, COLOR_BLACK);
     init_pair(3, COLOR_YELLOW, COLOR_BLACK);
+
+    // Get filename
+    string filename;
+    char input[100];
+    bool validfilename = false;
+
+    while (!validfilename) {
+        mvprintw(0, 0, "Enter filename (no spaces): ");
+        getnstr(input, sizeof(input) - 1);
+        filename = string(input);
+        
+        if (filename.find(' ') != string::npos) {
+            attron(COLOR_PAIR(1));
+            mvprintw(1, 0, "Error: filename should not contain spaces. Try again.");
+            attroff(COLOR_PAIR(1));
+            refresh();
+            memset(input, 0, sizeof(input));
+        } else {
+            validfilename = true;
+        }
+    }
+
+    string filePath = "database/" + filename + ".csv";
+    ifstream file(filePath);
+    if (!file.good()) {
+        ofstream newFile(filePath);
+    }
+
+    // Create file with singleton pattern using user input
+    File& userfile = File::getInstance(filename);
+
+     // Parse the CSV file
+    parseCSV(filePath, infoList);
 
     // Size of the screen
     int yMax, xMax;
@@ -46,9 +71,9 @@ int main() {
 
         print_title(currentState, xMax);
 
-        owner.print();
+        userfile.print();
 
-        print_choices(currentState, infoList);
+        print_choices(currentState, infoList, filePath);
 
         refresh();
 
