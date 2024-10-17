@@ -10,10 +10,10 @@ using namespace std;
 void print_choices(State currentState, vector<Info*> &data, const string& filePath) {
     if (currentState == MAIN_MENU) {
         mvprintw(2, 0, "Choose an option:");
-        mvprintw(4, 0, "1. Add Information");
-        mvprintw(5, 0, "2. Delete Information");
-        mvprintw(6, 0, "3. Find Information");
-        mvprintw(7, 0, "4. Search Information");
+        mvprintw(4, 0, "1. Add Data");
+        mvprintw(5, 0, "2. Delete Data");
+        mvprintw(6, 0, "3. Find Data");
+        mvprintw(7, 0, "4. Search Data");
         mvprintw(12, 0, "Press 'esc' to exit");
     }
 
@@ -309,7 +309,7 @@ void print_title(State currentState, int xMax) {
 
     switch (currentState) {
         case MAIN_MENU:
-            title = "Library";
+            title = "Data Manager";
             break;
 
         case ADD_INFO:
@@ -317,19 +317,19 @@ void print_title(State currentState, int xMax) {
         case ADD_INFO_NUMBER:
         case ADD_INFO_MATH:
         case ADD_INFO_ADDRESS:
-            title = "Add Information";
+            title = "Add Data";
             break;
 
         case DELETE_INFO:
         case DELETE_INFO_ID:
         case DELETE_INFO_NAME:
-            title = "Delete Information";
+            title = "Delete Data";
             break;
 
         case FIND_INFO:
         case FIND_INFO_ID:
         case FIND_INFO_NAME:
-            title = "Find Information";
+            title = "Find Data";
             break;
 
         case SEARCH_INFO:
@@ -337,7 +337,7 @@ void print_title(State currentState, int xMax) {
         case SEARCH_INFO_NUMBER:
         case SEARCH_INFO_MATH:
         case SEARCH_INFO_ADDRESS:
-            title = "Search Information";
+            title = "Search Data";
             break;
     }
 
