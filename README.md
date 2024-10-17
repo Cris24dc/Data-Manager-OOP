@@ -1,5 +1,7 @@
 # Data Manager OOP
 
+<img src="./img/wallpaper.jpg" width="95%"/>
+
 ## Overview
 
 This project is a C++ application that demonstrates the principles of Object-Oriented Programming (OOP). The application allows users to manage data entries efficiently using a terminal-based user interface. Users can create, read, update, and delete data entries stored in CSV files.
