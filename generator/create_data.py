@@ -7,7 +7,7 @@ fake = Faker()
 def generate_random_data(num_rows):
     data = []
     for i in range(num_rows):
-        unique_id = str(i)
+        unique_id = str(i + 1)
         
         unique_name = fake.name()
         while any(unique_name in row for row in data):
@@ -33,7 +33,8 @@ def generate_random_data(num_rows):
     
     return data
 
-file_path = './data.csv'
+file_name = input("Enter file name: ")
+file_path = f'./database/{file_name}.csv'
 num_rows = int(input("Enter the number of values to generate: "))
 
 data = generate_random_data(num_rows)
