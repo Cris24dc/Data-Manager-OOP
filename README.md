@@ -82,9 +82,13 @@ Upon launching, the main program will prompt you to enter the filename you want 
 After the file is opened, the user interface will display the following options:
 
 **Add Data**: Allows you to add new data entries.
+<img src="./img/image4.png" width="95%">
 
 **Delete Data**: Enables you to remove data entries either by their ID or by name.
+<img src="./img/image1.png" width="95%">
 
 **Find Data**: Lets you locate specific data entries using either their ID or name.
+<img src="./img/image2.png" width="95%">
 
 **Search Data**: Provides functionality to search for specific values within the data.
+<img src="./img/image3.png" width="95%">
