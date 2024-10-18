@@ -83,16 +83,16 @@ After the file is opened, the user interface will display the following options:
 
 **Add Data**: Allows you to add new data entries.
 <br>
-<img src="./img/image4.png" width="65%">
+<img src="./img/image4.png" width="50%">
 
 **Delete Data**: Enables you to remove data entries either by their ID or by name.
 <br>
-<img src="./img/image1.png" width="65%">
+<img src="./img/image1.png" width="50%">
 
 **Find Data**: Lets you locate specific data entries using either their ID or name.
 <br>
-<img src="./img/image2.png" width="65%">
+<img src="./img/image2.png" width="50%">
 
 **Search Data**: Provides functionality to search for specific values within the data.
 <br>
-<img src="./img/image3.png" width="65%">
+<img src="./img/image3.png" width="50%">
