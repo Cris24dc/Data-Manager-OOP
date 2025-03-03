@@ -1,98 +1,89 @@
-# Data Manager OOP
+# **Data Manager OOP**  
 
 <img src="./img/wallpaper.jpg" width="95%"/>
 
-## Overview
+## **📌 Overview**  
 
-This project is a C++ application that demonstrates the principles of Object-Oriented Programming (OOP). The application allows users to manage data entries efficiently using a terminal-based user interface. Users can create, read, update, and delete data entries stored in CSV files.
+**Data Manager OOP** is a **C++ application** that demonstrates key **Object-Oriented Programming (OOP)** principles. It provides an efficient way to **manage, search, and manipulate structured data** through a terminal-based user interface. The application supports **CRUD operations (Create, Read, Update, Delete)** with data stored in **CSV files** for persistence.
 
-## Features
 
-- **Data Management**: Users can add, delete, find, and search for data entries.
-- **User Interface**: A simple terminal-based UI that guides the user through various options.
-- **Data Persistence**: Automatically creates and manages CSV files for data storage.
-- **Random Data Generation**: A separate script for generating fake data using the Faker library.
+## **🚀 Features**  
 
-## Project Structure
+✔ **Data Management** – Create, delete, search, and update data entries efficiently.  
+✔ **Terminal-Based UI** – A structured interface guiding users through operations.  
+✔ **Persistent Storage** – Automatically manages **CSV files** for data storage.  
+✔ **Random Data Generation** – Uses the **Faker** library to create sample datasets.  
 
+## **📂 Project Structure**  
+
+```
 Data-Manager-OOP/
-<br>
-├── main.cpp # Main application code
-<br>
-├── classes.hpp # Class implementations and definitions
-<br>
-├── ui.hpp # User interface implementation
-<br>
-├── state.hpp # Enum definitions for program states
-<br>
+│── main.cpp         # Main application code
+│── classes.hpp      # Class definitions and implementations
+│── ui.hpp           # User interface functions
+│── state.hpp        # Enum definitions for program states
 │
-<br>
-├── generator/ # Folder for data generation scripts
-<br>
-│ └── create_data.py # Script to generate random fake data
-<br>
+├── generator/       # Folder for data generation scripts
+│   └── create_data.py  # Python script for generating fake data
 │
-<br>
-└── database/ # Folder for CSV files created by users
+└── database/        # Folder where CSV files are stored
+```
 
-## Setup
 
-1. Clone the repository:
+## **🛠 Setup Instructions**  
 
-   ```bash
-   git clone git@github.com:Cris24dc/Data-Manager-OOP.git
-   cd Data-Manager-OOP
-   ```
+### **1️⃣ Clone the Repository**  
 
-2. Install the Faker library:
+```bash
+git clone git@github.com:Cris24dc/Data-Manager-OOP.git
+cd Data-Manager-OOP
+```
 
-   ```bash
-   pip install faker
-   ```
+### **2️⃣ Install Dependencies**  
 
-3. Generate fake data:
+📌 **Install the Faker library (for data generation):**  
+```bash
+pip install faker
+```
 
-   ```bash
-   python3 ./generator/create_data.py
-   ```
+📌 **Install ncurses (for terminal UI):**  
+```bash
+sudo apt install libncurses5-dev libncursesw5-dev
+```
 
-4. Install ncurses
 
-   ```bash
-   sudo apt install libncurses5-dev libncursesw5-dev
-   ```
+## **▶ Running the Application**  
 
-5. Build and run the program
-   ```bash
-   g++ main.cpp -o main.o -lncurses && ./main.o
-   ```
+### **📌 1. Generate Fake Data (Optional)**  
+```bash
+python3 ./generator/create_data.py
+```
+The script will prompt you to enter a **CSV filename** and the **number of entries** to generate.
 
-## Usage
+### **📌 2. Build & Run the Program**  
+```bash
+g++ main.cpp -o main.o -lncurses && ./main.o
+```
 
-### 1. Data Generator:
+Upon launch, the program will ask for a **filename**:  
+- If the file exists in the `database/` folder, it will be opened.  
+- If not, a **new file** will be created with the specified name.  
 
-Upon running the script, the console will ask for name of the CSV file and the number of entries generated.
 
-### 2. File Management:
+## **🖥️ User Interface & Functionality**  
 
-Upon launching, the main program will prompt you to enter the filename you want to use. If the specified file already exists in the database folder, the program will open it. If it does not exist, the program will create a new file with the provided name.
-
-### 3.User Interface Options:
-
-After the file is opened, the user interface will display the following options:
-
-**Add Data**: Allows you to add new data entries.
-<br>
+### **📌 1. Add Data**  
+Allows users to **insert new data entries** into the file.  
 <img src="./img/image4.png" width="50%">
 
-**Delete Data**: Enables you to remove data entries either by their ID or by name.
-<br>
+### **📌 2. Delete Data**  
+Enables removal of data entries by **ID** or **name**.  
 <img src="./img/image1.png" width="50%">
 
-**Find Data**: Lets you locate specific data entries using either their ID or name.
-<br>
+### **📌 3. Find Data**  
+Lets users **search for specific data entries** using **ID** or **name**.  
 <img src="./img/image2.png" width="50%">
 
-**Search Data**: Provides functionality to search for specific values within the data.
-<br>
+### **📌 4. Search Data**  
+Provides functionality to **filter and locate specific values** within the dataset.  
 <img src="./img/image3.png" width="50%">
